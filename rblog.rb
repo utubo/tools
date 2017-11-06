@@ -2,17 +2,20 @@
 #
 # -*- coding: utf-8 -*-
 #
-# tool to color ruby logs
+# Tool to color ruby logs
+#
+# example) tail -f aaa.log | ruby rblog.rb
 
 require "optparse"
 REG = /^([A-Z]), \[([0-9]{4}-[0-9]{2}-[0-9]{2})[^\]]+\] +([A-Z]+) -- : (.+)/
 REG_FATAL = /^[^.]+\.rb:[0-9]+: .+/
-COLORS = { "D" => "\e[\033[36m", # sky
-           "I" => "\e[\033[32m", # green
-           "W" => "\e[\033[33m", # yellow
-           "E" => "\e[\033[31m", # red
-           "F" => "\e[\033[35m", # perple
-           nil => "\e[\033[32m", # green
+COLORS = {
+	"D" => "\e[\033[36m", # sky
+	"I" => "\e[\033[32m", # green
+	"W" => "\e[\033[33m", # yellow
+	"E" => "\e[\033[31m", # red
+	"F" => "\e[\033[35m", # perple
+	nil => "\e[\033[32m", # green
 }
 
 # -----------------------
