@@ -1,7 +1,8 @@
 #!/bin/sh
 
 apt-get update
-if apt-get -s upgrade | grep 'アップグレード: 0 個、新規インストール: 0 個、削除: 0 個、保留: 0 個。'; then
+chk=$(apt-get -s upgrade | grep -C 1 以下のパッケージ | grep -v 検出しています)
+if [ -z "$chk" ]; then
   if [ -e /var/login_msg.d/apt-check.txt ]; then
     rm /var/login_msg.d/apt-check.txt
   fi
@@ -10,5 +11,6 @@ else
     mkdir -p /var/login_msg.d
   fi
   echo 更新が必要なパッケージがあります。 > /var/login_msg.d/apt-check.txt
+  echo "$chk" >> /var/login_msg.d/apt-check.txt
 fi
 
