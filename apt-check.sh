@@ -1,7 +1,7 @@
 #!/bin/sh
 
 apt-get update
-chk=$(apt-get -s upgrade | grep -C 1 以下のパッケージ | grep -v 検出しています)
+chk=$(apt-get -s upgrade | grep -C 99 以下のパッケージ | grep -v 検出しています | grep -v -e ^Inst | grep -v -e ^Conf)
 if [ -z "$chk" ]; then
   echo 更新が必要なパッケージはありません。
   if [ -e /var/login_msg.d/apt-check.txt ]; then
