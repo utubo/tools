@@ -19,6 +19,9 @@ else
 	branch=`git symbolic-ref --short HEAD`
 fi
 
+PS4="\033[1;33m#\033[0m "
+set -x
+git status -s -b
 git log --name-status --oneline $remote/$branch..$branch
 git push $@
 
