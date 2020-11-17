@@ -1,9 +1,9 @@
 #!/bin/sh
 
-apt-get update
-apt-get -y dist-upgrade
-apt-get autoclean
-apt-get autoremove
+apt update
+apt -y dist-upgrade
+apt autoclean
+apt -y autoremove
 if [ -e /var/login_msg.d/apt-check.txt ]; then
   rm /var/login_msg.d/apt-check.txt
 fi
